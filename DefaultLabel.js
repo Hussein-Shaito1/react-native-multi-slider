@@ -7,6 +7,7 @@ const sliderRadius = 3;
 const width = 50;
 export default class DefaultLabel extends React.Component {
   static propTypes = {
+
     oneMarkerValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     twoMarkerValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
@@ -17,6 +18,7 @@ export default class DefaultLabel extends React.Component {
     twoMarkerPressed: PropTypes.bool,
   };
 
+
   render() {
     const {
       oneMarkerValue,
@@ -25,6 +27,9 @@ export default class DefaultLabel extends React.Component {
       twoMarkerLeftPosition,
       oneMarkerPressed,
       twoMarkerPressed,
+      labelStyle,
+      textStyle,
+      valueSuffix,
     } = this.props;
 
     return (
@@ -34,11 +39,12 @@ export default class DefaultLabel extends React.Component {
             <View
               style={[
                 styles.sliderLabel,
-                { left: oneMarkerLeftPosition - width / 2 },
+                { left: oneMarkerLeftPosition - width / 2 + sliderRadius },
                 oneMarkerPressed && styles.markerPressed,
+                labelStyle
               ]}
             >
-              <Text style={styles.sliderLabelText}>{oneMarkerValue}</Text>
+              <Text style={[styles.sliderLabelText, textStyle]}>{oneMarkerValue} {valueSuffix}</Text>
             </View>
           )}
 
@@ -47,11 +53,12 @@ export default class DefaultLabel extends React.Component {
             <View
               style={[
                 styles.sliderLabel,
-                { left: twoMarkerLeftPosition - width / 2 },
+                { left: twoMarkerLeftPosition - width / 2 + sliderRadius },
                 twoMarkerPressed && styles.markerPressed,
+                labelStyle
               ]}
             >
-              <Text style={styles.sliderLabelText}>{twoMarkerValue}</Text>
+              <Text style={[styles.sliderLabelText, textStyle]}>{twoMarkerValue} {valueSuffix}</Text>
             </View>
           )}
       </View>
